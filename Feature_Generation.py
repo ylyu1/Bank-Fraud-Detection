@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 
 class Location_Transformer():
+
     
     def fit(self, X, y=None):
         file_path = '../data/CP.csv'  
@@ -73,6 +74,7 @@ class Location_Transformer():
         return X
     
 class Group_Transformer():
+
     
     def __init__(self, binwidth, fn):
         self.bin = binwidth
@@ -94,6 +96,7 @@ class Group_Transformer():
 
 # convert individual_Behavior function to class
 class Individual_Behavior_Transformer():
+
     
     def __init__(self, names:list[str]):
         self.names=names
@@ -175,6 +178,7 @@ class Individual_Behavior_Transformer():
     
 # convert time_difference function to class
 class Time_Difference_Transformer():
+
     
     def __init__(self, names:list[str]):
         self.names = names  
@@ -203,6 +207,7 @@ class Time_Difference_Transformer():
     
 # convert Geo_velocity to class
 class Geo_Velocity_Transformer():  
+
     
     def __init__(self, names:list[str]):
         self.names = names  
@@ -250,6 +255,7 @@ class Geo_Velocity_Transformer():
 
 # create a tranformer
 class USD_Ordinal_Transformer(object):
+
     
     def fit(self, X, y=None):
         return self
@@ -272,6 +278,8 @@ class USD_Ordinal_Transformer(object):
             return 'low'
 
 class Feature_Selection_Transformer(object):
+
+    
     def __init__(self, selected_features: list[str]):
         self.selected_features = selected_features
     
