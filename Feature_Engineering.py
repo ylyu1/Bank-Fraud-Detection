@@ -1,9 +1,8 @@
 import numpy as np
 import pandas as pd
 
+
 # class Ordinal_Transformer_lob():
-
-
 #     def fit(self, X, y=None):
 #         self.res = {"bc": 1, np.nan: 0}
 
@@ -17,9 +16,8 @@ import pandas as pd
 #         self.fit(X, y)
 #         return self.transform(X, y)
 
-class Ordinal_Transformer_lob():
 
-    
+class Ordinal_Transformer_lob():
     def fit(self, X, y=None):
         self.lob_value = X.unique()[0]  
 
@@ -31,10 +29,9 @@ class Ordinal_Transformer_lob():
     def fit_transform(self, X, y=None):
         self.fit(X, y)
         return self.transform(X, y)
-    
-class Frequency_Transformer_Single():
 
-    
+
+class Frequency_Transformer_Single():
     def __init__(self, name_f, name_Label):
         self.name_f = name_f
         self.Label = name_Label
@@ -44,7 +41,6 @@ class Frequency_Transformer_Single():
         self.group = X.groupby(by = self.name_f)[self.Label].mean()
         self.med = np.nanmean(self.group.values)
  
-        
     def transform(self, X, y=None):
         X[self.nf_name] = X[self.name_f].map(self.group)
         if X[self.nf_name].isna().sum()==0:
@@ -80,9 +76,8 @@ class Frequency_Transformer_Single():
         x = self.group[nearest_values].sum()/num
         return x
 
-class Feq_Transformer_Multi():
 
-    
+class Feq_Transformer_Multi():
     def __init__(self, names, label):
         self.transformers = []
         for name in names:
@@ -113,9 +108,9 @@ class Feq_Transformer_Multi():
         for transformer in self.transformers:
             X = transformer.find_near(X)
         return X
-        
-class Dummy_Transformer(object):
 
+
+class Dummy_Transformer(object):
     def fit(self, X, y=None):
         self.keys = set(X)
 
@@ -132,9 +127,8 @@ class Dummy_Transformer(object):
         self.fit(X)
         return self.transform(X)
 
-class Pair_Transformer():
 
-    
+class Pair_Transformer():
     def __init__(self, names:list[tuple()]):
         self.names=names
         
@@ -151,10 +145,9 @@ class Pair_Transformer():
         self.fit(X)
         return self.transform(X)
 
+
 # create a tranformer for Sen/Ben filling missing to each other
 class Fill_Missing_Transformer(object):
-
-    
     def fit(self, X, y=None):
         return self
 
@@ -176,9 +169,8 @@ class Fill_Missing_Transformer(object):
         self.fit(X)
         return self.transform(X)
 
-class Time_Transformer(object):
 
-    
+class Time_Transformer(object):
     def fit(self, X, y=None):
         return self
 
