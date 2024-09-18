@@ -2,9 +2,8 @@
 import numpy as np
 import pandas as pd
 
-class Location_Transformer():
 
-    
+class Location_Transformer():
     def fit(self, X, y=None):
         file_path = '../data/CP.csv'  
         cp = pd.read_csv(file_path)
@@ -72,10 +71,9 @@ class Location_Transformer():
         cols_to_drop = ['lat1','lon1','lat2','lon2','dlon','dlat','a','c']
         X.drop(columns=cols_to_drop,inplace = True)
         return X
-    
-class Group_Transformer():
 
-    
+
+class Group_Transformer():
     def __init__(self, binwidth, fn):
         self.bin = binwidth
         self.fn = fn
@@ -94,10 +92,9 @@ class Group_Transformer():
         self.fit(X)
         return self.transform(X)
 
+
 # convert individual_Behavior function to class
 class Individual_Behavior_Transformer():
-
-    
     def __init__(self, names:list[str]):
         self.names=names
         
@@ -175,11 +172,10 @@ class Individual_Behavior_Transformer():
 
         X = X.merge(daily_trans[[name, 'date', cum_avg_name]], on=[name, 'date'], how='left')
         return X
-    
+
+
 # convert time_difference function to class
 class Time_Difference_Transformer():
-
-    
     def __init__(self, names:list[str]):
         self.names = names  
         
@@ -204,11 +200,10 @@ class Time_Difference_Transformer():
         X[time_diff_name] = X[time_diff_name].dt.total_seconds()/60.0
         X.drop(['shifted_time'], axis=1, inplace=True)
         return X
-    
+
+
 # convert Geo_velocity to class
 class Geo_Velocity_Transformer():  
-
-    
     def __init__(self, names:list[str]):
         self.names = names  
         
@@ -253,10 +248,9 @@ class Geo_Velocity_Transformer():
         r = 6371  # Radius of Earth in kilometers. Use 3956 for miles
         return c * r
 
+
 # create a tranformer
 class USD_Ordinal_Transformer(object):
-
-    
     def fit(self, X, y=None):
         return self
 
@@ -277,9 +271,8 @@ class USD_Ordinal_Transformer(object):
         else:
             return 'low'
 
-class Feature_Selection_Transformer(object):
 
-    
+class Feature_Selection_Transformer(object):
     def __init__(self, selected_features: list[str]):
         self.selected_features = selected_features
     
