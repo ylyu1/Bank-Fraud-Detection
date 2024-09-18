@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 
 # class Ordinal_Transformer_lob():
+
+
 #     def fit(self, X, y=None):
 #         self.res = {"bc": 1, np.nan: 0}
 
@@ -16,6 +18,8 @@ import pandas as pd
 #         return self.transform(X, y)
 
 class Ordinal_Transformer_lob():
+
+    
     def fit(self, X, y=None):
         self.lob_value = X.unique()[0]  
 
@@ -29,6 +33,7 @@ class Ordinal_Transformer_lob():
         return self.transform(X, y)
     
 class Frequency_Transformer_Single():
+
     
     def __init__(self, name_f, name_Label):
         self.name_f = name_f
@@ -76,6 +81,7 @@ class Frequency_Transformer_Single():
         return x
 
 class Feq_Transformer_Multi():
+
     
     def __init__(self, names, label):
         self.transformers = []
@@ -127,7 +133,8 @@ class Dummy_Transformer(object):
         return self.transform(X)
 
 class Pair_Transformer():
-   
+
+    
     def __init__(self, names:list[tuple()]):
         self.names=names
         
@@ -146,6 +153,7 @@ class Pair_Transformer():
 
 # create a tranformer for Sen/Ben filling missing to each other
 class Fill_Missing_Transformer(object):
+
     
     def fit(self, X, y=None):
         return self
@@ -169,6 +177,7 @@ class Fill_Missing_Transformer(object):
         return self.transform(X)
 
 class Time_Transformer(object):
+
     
     def fit(self, X, y=None):
         return self
